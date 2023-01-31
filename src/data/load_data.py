@@ -17,10 +17,10 @@ def read_params(config_path:str) -> dict:
     """Read in project related parameters from params.yaml file.
 
     Args:
-        config_path (str): Path to params.yaml.
+        config_path (str): Path to params.yaml
 
     Returns:
-        Project related parameters as dictionary.
+        Project related parameters as dictionary
 
     """
     with open(config_path) as yaml_file:
@@ -31,11 +31,11 @@ def load_data(data_path:str, model_var:str) -> pd.DataFrame:
     """Load csv dataset from given path.
 
     Args:
-        data_path (str): Path to csv file.
-        model_var (str): One or more variables to be used, to filter read in csv file.
+        data_path (str): Path to csv file
+        model_var (str): One or more variables to be used, to filter read in csv file
 
     Returns:
-        Project related parameters as dictionary.
+        Project related parameters as dictionary
 
     """
     df = pd.read_csv(data_path, sep=",", encoding="utf-8")
