@@ -13,6 +13,9 @@ import yaml
 import argparse
 import pandas as pd 
 
+# TODO: Add black as a feature to make the code better readable
+# TODO: Add mypy to check that always the right data types are used
+
 def read_params(config_path:str) -> dict:
     """Read in project related parameters from params.yaml file.
 
