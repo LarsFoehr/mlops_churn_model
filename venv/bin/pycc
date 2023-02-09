@@ -1,0 +1,3 @@
+#!/Users/lars/Desktop/Lars/Data_Science/mlops_churn_model/venv/bin/python3.10
+from numba.pycc import main
+main()

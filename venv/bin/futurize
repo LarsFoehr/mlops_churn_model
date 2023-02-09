@@ -1,4 +1,4 @@
-#!/Users/lars/Desktop/Lars/Data_Science/mlops_churn_model/venv/bin/python3.11
+#!/Users/lars/Desktop/Lars/Data_Science/mlops_churn_model/venv/bin/python3.10
 # EASY-INSTALL-ENTRY-SCRIPT: 'future==0.18.3','console_scripts','futurize'
 import re
 import sys
