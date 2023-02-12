@@ -1,0 +1,51 @@
+# This file is used to create the model pipeline.
+# The following stages are executed:
+# - raw_dataset_creation
+# - split_data
+# - model_train
+# - log_production_model
+
+stages:
+  # The stage raw_dataset_creation loads the data and creates the rwa data, which will be used for model training.
+  # It saves the training data.
+  raw_dataset_creation:
+    cmd: python src/data/load_data.py --config=params.yaml
+    deps:
+    - src/data/load_data.py
+    - data/external/train.csv
+    outs:
+    - data/raw/train.csv
+  
+  # The stage split_data is used, to split the data into training and test set.
+  # It saves the training and test data.
+  split_data:
+    cmd: python src/data/split_data.py --config=params.yaml
+    deps:
+    - src/data/split_data.py
+    - data/raw/train.csv
+    outs:
+    - data/processed/churn_train.csv
+    - data/processed/churn_test.csv
+
+  # The stage model_train trains the model using the the train and test set and creates performance measures.
+  model_train:
+    cmd: python src/models/train_model.py --config=params.yaml
+    deps:
+    - data/processed/churn_train.csv
+    - data/processed/churn_test.csv
+    - src/models/train_model.py
+    params:
+    - random_forest.max_depth
+    - random_forest.n_estimators
+
+  # The stage log_production_model logs the best possible model for MlFlow to track it. 
+  # It also saves the best model and chooses this way the model for production.
+  log_production_model:
+    cmd: python src/models/production_model_selection.py --config=params.yaml
+    deps:
+    - src/models/production_model_selection.py
+    params:
+    - random_forest.max_depth
+    - random_forest.n_estimators
+    outs:
+    - models/model.joblib
