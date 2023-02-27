@@ -10,7 +10,14 @@ import mlflow
 import argparse
 from pprint import pprint
 from mlflow.tracking import MlflowClient
-from ..data.load_data import read_params
+
+import sys
+import os
+current = os.path.dirname(os.path.realpath(__file__))
+parent = os.path.dirname(current)
+sys.path.append(parent)
+from data.load_data import read_params
+
 
 def log_production_model(config_path:str) -> str:
     """_summary_

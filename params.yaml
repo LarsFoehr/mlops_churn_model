@@ -23,10 +23,10 @@ processed_data_config:
 # The model which is going to be used, is a random forest
 mlflow_config:
   artifacts_dir: artifacts
-  experiment_name: model_iteration1
+  experiment_name: model_iteration_larsfoehr
   run_name: random_forest
   registered_model_name: random_forest_model
-  remote_server_uri: http://localhost:1234
+  remote_server_uri: http://localhost:123
  
  # Specficifations of the random forest model
 random_forest: 

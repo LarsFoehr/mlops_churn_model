@@ -10,9 +10,12 @@ The following functions are written and used:
     * accuracymeasures - Read in project related parameters
     * load_data - Load csv dataset from given path
     * load_raw_data - Load train and test data from external location(data/external) to raw folder(data/raw)
+    
+Important information:
+    * Before running the training on localhost, the mlflow server has to run on localhost
+    * This is done via: mlflow server --host 0.0.0.0 --port 123
 """
 
-from src.data.load_data import read_params
 import json
 import yaml
 import joblib
@@ -23,6 +26,13 @@ import pandas as pd
 from urllib.parse import urlparse
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import f1_score, recall_score, accuracy_score, precision_score, confusion_matrix, classification_report
+
+import sys
+import os
+current = os.path.dirname(os.path.realpath(__file__))
+parent = os.path.dirname(current)
+sys.path.append(parent)
+from data.load_data import read_params
 
 def accuracymeasures(y_test:pd.DataFrame, predictions:pd.Series, avg_method:str) -> tuple:
     """This function calculates different performance measures for the model(s).
@@ -60,7 +70,7 @@ def accuracymeasures(y_test:pd.DataFrame, predictions:pd.Series, avg_method:str)
 
     return accuracy, precision, recall, f1score
 
-def get_feat_and_target(df:pd.DataFrame, target:str) -> :
+def get_feat_and_target(df:pd.DataFrame, target:str) -> tuple:
     """This function separates the feature dataframe and the target variable.
 
     Args:
