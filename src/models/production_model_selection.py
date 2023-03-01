@@ -1,8 +1,13 @@
 """Select the best possible model for production
     
-- This script helps to select the best-performing model from the model registry.
-- It saves the best model in the model directory. 
-- The best model is selected using the model performance metric - accuracy.
+    * This script helps to select the best-performing model from the model registry.
+    * It saves the best model in the model directory. 
+    * The best model is selected using the model performance metric - accuracy.
+    
+Important information:
+    * To see the mlflow dashboard enter the following into bash console: mlflow ui
+
+
 """
 
 import joblib
@@ -18,6 +23,9 @@ parent = os.path.dirname(current)
 sys.path.append(parent)
 from data.load_data import read_params
 
+# os.getcwd()
+# config_path = "params.yaml"
+# from src.data.load_data import read_params
 
 def log_production_model(config_path:str) -> str:
     """_summary_
@@ -40,7 +48,9 @@ def log_production_model(config_path:str) -> str:
     # Search for all experiment which were run via MlFlow
     # Take the experiment and the model with the best performance metric - accuracy
     mlflow.set_tracking_uri(remote_server_uri)
-    runs = mlflow.search_runs(experiment_ids=1)
+    runs = mlflow.search_runs(experiment_ids="1")
+    
+    # Get the maximum accuracy scores of the experiment ids
     max_accuracy = max(runs["metrics.accuracy"])
     max_accuracy_run_id = list(runs[runs["metrics.accuracy"] == max_accuracy]["run_id"])[0]
     
