@@ -39,8 +39,8 @@ stages:
       md5: 8358e3ab11f8301c58d3b0e5aa99a6fd
       size: 92916
     - path: src/models/train_model.py
-      md5: 64d700a23a05add9a3ef6638eac90232
-      size: 5817
+      md5: b143d8fe29d91268913275bf44f6dce3
+      size: 5889
     params:
       params.yaml:
         random_forest.max_depth: 15
@@ -49,8 +49,8 @@ stages:
     cmd: python src/models/production_model_selection.py --config=params.yaml
     deps:
     - path: src/models/production_model_selection.py
-      md5: c77ef651f68254f0fff395fed42e9fd7
-      size: 2935
+      md5: bcbf7ca906c24dfa2062bf30c41695e2
+      size: 3060
     params:
       params.yaml:
         random_forest.max_depth: 15
