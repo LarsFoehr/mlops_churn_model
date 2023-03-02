@@ -13,7 +13,7 @@ The following functions are written and used:
     
 Important information:
     * Before running the training on localhost, the mlflow server has to run on localhost
-    * This is done via: mlflow server --host 0.0.0.0 --port 123
+    * This is done via: mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./artifacts --host 0.0.0.0 -p 123
 """
 
 import json
