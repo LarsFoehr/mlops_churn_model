@@ -25,6 +25,7 @@ jobs:
       - name: Create and start virtual environment
         run: |
           source venv/bin/activate
+          export SKLEARN_ALLOW_DEPRECATED_SKLEARN_PACKAGE_INSTALL=True
       
       - name: Install dependencies
         run: pip install -r requirements.txt
